@@ -1,0 +1,9 @@
+{
+    "source": {
+      "include": ["./components", "./helper_functions"],
+      "includePattern": ".+\\.js(doc)?$"
+    },
+    "opts": {
+      "destination": "./docs"
+    }
+  }  
