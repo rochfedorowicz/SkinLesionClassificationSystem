@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/History.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/History.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import { View, FlatList, Text, Image, TouchableOpacity, StyleSheet, Modal, Platform } from 'react-native';
+
+import { interpretPredictionData} from '../helper_functions/MiscellaneousFunctions';
+
+/**
+ * Component for displaying a history of investigated photos with their predictions.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {boolean} props.visible - Indicates whether the history modal is visible.
+ * @param {Object[]} props.data - Array of photo data to be displayed in the history.
+ * @param {Function} props.setHistoryVisible - Function to toggle the visibility of the history modal.
+ * @returns {JSX.Element} - Rendered component.
+ */
+function History(props) {
+  // State to manage the enlarged item
+  const [isItemEnlarged, setIsItemEnlarged] = useState(false);
+  const [itemEnlarged, setItemEnlarged] = useState(null);
+
+  /**
+   * Closes the history modal.
+   *
+   * @returns {Promise&lt;void>} A Promise that resolves after closing the history modal.
+   */
+  const goBack = async () => {
+    props.setHistoryVisible(false);
+  };
+
+  /**
+   * Enlarges a history item to display detailed prediction information.
+   *
+   * @param {Object} item - The history item to be enlarged.
+   */
+  const enlargeItem = (item) => {
+    setIsItemEnlarged(true);
+    setItemEnlarged(item);
+  };
+
+  /**
+   * Minimizes the enlarged history item.
+   */
+  const minimizeItem = () => {
+    setIsItemEnlarged(false);
+    setItemEnlarged(null);
+  };
+
+  /**
+   * Rendered component JSX.
+   */
+  return (
+    &lt;Modal visible={props.visible} animationType="fade">
+      {/* Enlarged item modal */}
+      &lt;Modal visible={isItemEnlarged} transparent={true} animationType="fade">
+        &lt;TouchableOpacity 
+          style={styles.enlargedModal} 
+          onPress={minimizeItem}
+        >
+          {isItemEnlarged &amp;&amp;
+            &lt;View style={styles.enlargedModalItem}>
+              {/* Display enlarged item image */}
+              &lt;Image style={styles.enlargedModalItemImage} source={{uri: itemEnlarged.url}}/>
+              &lt;View style={styles.enlargedModalItemTexts}>
+                {/* Display binary classification information */}
+                &lt;Text style={styles.text}> Binary classification:&lt;/Text>
+                {Object.entries(itemEnlarged.predictedBinaryClasses)
+                  .sort(([, valueA], [, valueB]) => valueB - valueA)
+                  .map(([key, value]) => (
+                  &lt;Text key={key} style={styles.text}> {key}: {value.toFixed(2)} &lt;/Text>
+                ))}
+                {/* Display multiclass classification information */}
+                &lt;Text style={styles.text}>{"\n"}Multiclass classification:&lt;/Text>
+                {Object.entries(itemEnlarged.predictedMulticlassClasses)
+                  .sort(([, valueA], [, valueB]) => valueB - valueA)
+                  .map(([key, value]) => (
+                  &lt;Text key={key} style={styles.text}> {key}: {value.toFixed(2)} &lt;/Text>
+                ))}
+              &lt;/View>
+            &lt;/View>
+          }
+        &lt;/TouchableOpacity>
+      &lt;/Modal>
+      {/* Main content */}
+      &lt;View style={styles.container}>
+        &lt;View style={styles.background}>
+          &lt;Text style={styles.pageText}>Investigated photos&lt;/Text>
+        &lt;/View>
+        {/* FlatList to display history items */}
+        &lt;FlatList
+          style={styles.flatList}
+          data={props.data}
+          keyExtractor={(_item, index) => `${index}`}
+          numColumns={Platform.OS === 'web' ? 4 : 2}
+          renderItem={({ item }) => {
+            // Parse prediction data and set predicted classes
+            const parsed_prediction = JSON.parse(item.prediction.replace(/'/g, '"'))
+            item.predictedBinaryClasses = interpretPredictionData(parsed_prediction.binary);
+            item.predictedMulticlassClasses = interpretPredictionData(parsed_prediction.multiclass);
+            return (
+              &lt;TouchableOpacity 
+                style={styles.historyItem} 
+                onPress={() => enlargeItem(item)}
+              >
+                {/* Display image of the history item */}
+                &lt;Image source={{ uri: item.url }} style={styles.image} />
+                {/* Display binary classification information */}
+                {Object.values(item.predictedBinaryClasses).map((value, index) => (
+                  &lt;Text key={index} style={styles.text}> {Object.keys(item.predictedBinaryClasses)[index]}: {value.toFixed(2)} &lt;/Text>
+                ))}
+              &lt;/TouchableOpacity>
+            );
+          }}
+        />
+        &lt;TouchableOpacity style={styles.button} onPress={goBack}>
+          &lt;Text style={styles.text}> Go back &lt;/Text>
+        &lt;/TouchableOpacity>
+      &lt;/View>
+    &lt;/Modal>
+  );
+}
+
+export default History;
+
+const styles = StyleSheet.create({
+  // Background style for title
+  background: {
+    width: Platform.OS === 'web' ? '50%' : '85%',
+    backgroundColor: '#fb8500',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
+    marginBottom: 10
+  },
+  // Container style for the modal
+  container: {
+    flex: 1,
+    paddingTop: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: '#ffb703',
+  },
+  // FlatList style for the history items
+  flatList: {
+    paddingTop: 10,
+    width: '100%',
+  },
+  // Style for each history item
+  historyItem: {
+    flexDirection: 'column',
+    padding: 10,
+    marginHorizontal: '2.5%',
+    borderWidth: 3,
+    borderColor: '#219ebc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Platform.OS === 'web' ? '20%' : '45%',
+    backgroundColor: '#8ecae6',
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  // Style for displayed images in history items
+  image: {
+    width: '100%',
+    aspectRatio: 1,
+    marginBottom: 10,
+    borderRadius: 10,
+    borderColor: '#219ebc',
+    borderWidth: 3
+  },
+  // Style for title text
+  pageText: {
+    fontSize: 28,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  // Style for the "Go back" button
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    paddingVertical: 15,
+    borderRadius: 25,
+    backgroundColor: '#023047',
+    width: '70%',
+  },
+  // Style for text within the component
+  text: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  enlargedModalItemImage: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+    margin: 10,
+    aspectRatio: 1,
+    borderWidth: 3,
+    borderRadius: 10,  
+    borderColor: '#219ebc'
+  },
+  enlargedModalItemTexts: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center'
+  },
+  enlargedModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+  },
+  enlargedModalItem: {
+    height: Platform.OS == 'web' ? '50%' : '70%',
+    width: Platform.OS == 'web' ? '50%' : '80%',
+    backgroundColor: '#fb8500',
+    justifyContent: 'center',
+    alignContent: 'center',
+    flexDirection: Platform.OS == 'web' ? 'row' : 'column',
+    borderColor: '#219ebc',
+    borderWidth: 3,
+    borderRadius: 10,
+  }
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AlertModal">AlertModal</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthorizeUser">AuthorizeUser</a></li><li><a href="global.html#History">History</a></li><li><a href="global.html#LoadingScreen">LoadingScreen</a></li><li><a href="global.html#TakePhoto">TakePhoto</a></li><li><a href="global.html#fetchBackEndResources">fetchBackEndResources</a></li><li><a href="global.html#getKeyWithBiggestValue">getKeyWithBiggestValue</a></li><li><a href="global.html#interpretPredictionData">interpretPredictionData</a></li><li><a href="global.html#transformNativeUriIntoBase64">transformNativeUriIntoBase64</a></li><li><a href="global.html#transformWebUriIntoBase64">transformWebUriIntoBase64</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sun Jan 14 2024 15:57:36 GMT+0100 (czas środkowoeuropejski standardowy)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
