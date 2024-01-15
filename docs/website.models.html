@@ -36,7 +36,7 @@ Attributes:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;storage&nbsp;service.&nbsp;The&nbsp;string&nbsp;length&nbsp;is&nbsp;set&nbsp;to&nbsp;accommodate&nbsp;very&nbsp;long&nbsp;URLs.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;jsonified_prediction&nbsp;(str):&nbsp;A&nbsp;string&nbsp;representation&nbsp;of&nbsp;the&nbsp;prediction&nbsp;results&nbsp;associated&nbsp;with&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;image.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;user_id&nbsp;(int):&nbsp;A&nbsp;foreign&nbsp;key&nbsp;linking&nbsp;the&nbsp;image&nbsp;to&nbsp;a&nbsp;user&nbsp;in&nbsp;the&nbsp;'<a href="#User">User</a>'&nbsp;table.&nbsp;This&nbsp;establishes&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;user_id&nbsp;(int):&nbsp;A&nbsp;foreign&nbsp;key&nbsp;linking&nbsp;the&nbsp;image&nbsp;to&nbsp;a&nbsp;user&nbsp;in&nbsp;the&nbsp;'User'&nbsp;table.&nbsp;This&nbsp;establishes&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;many-to-one&nbsp;relationship,&nbsp;indicating&nbsp;that&nbsp;each&nbsp;image&nbsp;is&nbsp;associated&nbsp;with&nbsp;one&nbsp;user.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 
@@ -44,7 +44,7 @@ Attributes:<br>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#000000" face="helvetica, arial"><a name="User">class <strong>User</strong></a>(sqlalchemy.orm.decl_api.Model, <a href="flask_login.mixins.html#UserMixin">flask_login.mixins.UserMixin</a>)</font></td></tr>
+<font color="#000000" face="helvetica, arial"><a name="User">class <strong>User</strong></a>(sqlalchemy.orm.decl_api.Model, flask_login.mixins.UserMixin)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
 <td colspan=2><tt><br>
