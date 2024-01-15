@@ -26,7 +26,7 @@
 &nbsp;<br>
 A&nbsp;database&nbsp;model&nbsp;representing&nbsp;an&nbsp;image&nbsp;and&nbsp;its&nbsp;associated&nbsp;data&nbsp;in&nbsp;the&nbsp;system.<br>
 &nbsp;<br>
-This&nbsp;class&nbsp;defines&nbsp;the&nbsp;structure&nbsp;of&nbsp;the&nbsp;'<a href="#Image">Image</a>'&nbsp;table&nbsp;in&nbsp;the&nbsp;database,&nbsp;inheriting&nbsp;from&nbsp;'db.Model'&nbsp;<br>
+This&nbsp;class&nbsp;defines&nbsp;the&nbsp;structure&nbsp;of&nbsp;the&nbsp;'Image'&nbsp;table&nbsp;in&nbsp;the&nbsp;database,&nbsp;inheriting&nbsp;from&nbsp;'db.Model'&nbsp;<br>
 provided&nbsp;by&nbsp;SQLAlchemy.&nbsp;The&nbsp;model&nbsp;includes&nbsp;several&nbsp;fields:&nbsp;id,&nbsp;url,&nbsp;jsonified_prediction,&nbsp;and&nbsp;<br>
 user_id,&nbsp;each&nbsp;corresponding&nbsp;to&nbsp;a&nbsp;column&nbsp;in&nbsp;the&nbsp;database&nbsp;table.<br>
 &nbsp;<br>
@@ -51,8 +51,8 @@ Attributes:<br>
 &nbsp;<br>
 A&nbsp;database&nbsp;model&nbsp;representing&nbsp;a&nbsp;user&nbsp;in&nbsp;the&nbsp;system.<br>
 &nbsp;<br>
-This&nbsp;class&nbsp;defines&nbsp;the&nbsp;structure&nbsp;of&nbsp;the&nbsp;'<a href="#User">User</a>'&nbsp;table&nbsp;in&nbsp;the&nbsp;database.&nbsp;It&nbsp;inherits&nbsp;from&nbsp;<br>
-'db.Model'&nbsp;provided&nbsp;by&nbsp;SQLAlchemy&nbsp;and&nbsp;'<a href="flask_login.mixins.html#UserMixin">UserMixin</a>'&nbsp;for&nbsp;user&nbsp;session&nbsp;management.&nbsp;The&nbsp;model&nbsp;<br>
+This&nbsp;class&nbsp;defines&nbsp;the&nbsp;structure&nbsp;of&nbsp;the&nbsp;'User'&nbsp;table&nbsp;in&nbsp;the&nbsp;database.&nbsp;It&nbsp;inherits&nbsp;from&nbsp;<br>
+'db.Model'&nbsp;provided&nbsp;by&nbsp;SQLAlchemy&nbsp;and&nbsp;'UserMixin'&nbsp;for&nbsp;user&nbsp;session&nbsp;management.&nbsp;The&nbsp;model&nbsp;<br>
 includes&nbsp;several&nbsp;fields:&nbsp;id,&nbsp;email,&nbsp;password,&nbsp;first_name,&nbsp;and&nbsp;images.&nbsp;Each&nbsp;field&nbsp;is&nbsp;<br>
 mapped&nbsp;to&nbsp;a&nbsp;column&nbsp;in&nbsp;the&nbsp;database&nbsp;table.<br>
 &nbsp;<br>
@@ -62,7 +62,7 @@ Attributes:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;share&nbsp;the&nbsp;same&nbsp;email.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;password&nbsp;(str):&nbsp;The&nbsp;user's&nbsp;hashed&nbsp;password.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;first_name&nbsp;(str):&nbsp;The&nbsp;user's&nbsp;first&nbsp;name.<br>
-&nbsp;&nbsp;&nbsp;&nbsp;images&nbsp;(SQLAlchemy&nbsp;relationship):&nbsp;A&nbsp;relationship&nbsp;to&nbsp;the&nbsp;'<a href="#Image">Image</a>'&nbsp;model.&nbsp;This&nbsp;represents&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;images&nbsp;(SQLAlchemy&nbsp;relationship):&nbsp;A&nbsp;relationship&nbsp;to&nbsp;the&nbsp;'Image'&nbsp;model.&nbsp;This&nbsp;represents&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;one-to-many&nbsp;relationship,&nbsp;indicating&nbsp;that&nbsp;a&nbsp;single&nbsp;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user&nbsp;can&nbsp;be&nbsp;associated&nbsp;with&nbsp;multiple&nbsp;images.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
