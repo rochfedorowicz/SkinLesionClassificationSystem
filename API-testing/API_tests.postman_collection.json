@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "b4897bb6-ec7d-41c1-b12a-b6fa091c9917",
+		"name": "ENGINEERING_PROJECT_TF_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20813109"
+	},
+	"item": [
+		{
+			"name": "GET to https://my-engineering-project.click/api/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"<h1>Python back-end server API for Tensorflow.</h1>\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-engineering-project.click/api/",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET to https://my-engineering-project.click/api/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"<h1>Python back-end server API for Tensorflow. Login service.</h1>\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-engineering-project.click/api/login",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET to https://my-engineering-project.click/api/sign-up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"<h1>Python back-end server API for Tensorflow. Sign up service.</h1>\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-engineering-project.click/api/sign-up",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET to https://my-engineering-project.click/api/predict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"<h1>Python back-end server API for Tensorflow. Prediction service.</h1>\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-engineering-project.click/api/predict",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET to https://my-engineering-project.click/api/history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body(\"<h1>Python back-end server API for Tensorflow. History service.</h1>\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://my-engineering-project.click/api/history",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"history"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST to https://my-engineering-project.click/api/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check result for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result).to.eql(pm.iterationData.get(\"result\"));\r",
+							"});\r",
+							"pm.test(\"Check reason for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.reason).to.eql(pm.iterationData.get(\"reason\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://my-engineering-project.click/api/login",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST to https://my-engineering-project.click/api/sign-up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check result for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result).to.eql(pm.iterationData.get(\"result\"));\r",
+							"});\r",
+							"pm.test(\"Check reason for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.reason).to.eql(pm.iterationData.get(\"reason\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "repeatedPassword",
+							"value": "{{repeated_password}}",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "{{first_name}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://my-engineering-project.click/api/sign-up",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST to https://my-engineering-project.click/api/predict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check result for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result).to.eql(pm.iterationData.get(\"result\"));\r",
+							"});\r",
+							"pm.test(\"Check prediction for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var expectedPrediction = pm.iterationData.get(\"prediction\");\r",
+							"    if (expectedPrediction === \"\") {\r",
+							"        pm.expect(jsonData.prediction).to.eql({});\r",
+							"    } else {\r",
+							"        pm.expect(jsonData.prediction.binary).to.eql(JSON.parse(expectedPrediction));\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						},
+						{
+							"key": "base64",
+							"value": "{{base64}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://my-engineering-project.click/api/predict",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"predict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST to https://my-engineering-project.click/api/history",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check result for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result).to.eql(pm.iterationData.get(\"result\"));\r",
+							"});\r",
+							"pm.test(\"Check history for request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var expectedImages = pm.iterationData.get(\"images\");\r",
+							"    if (expectedImages === \"\") {\r",
+							"        pm.expect(jsonData.images).to.eql({});\r",
+							"    } else if (expectedImages === \"yes\"){\r",
+							"        pm.expect(jsonData.images).to.exist;\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{email}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://my-engineering-project.click/api/history",
+					"protocol": "https",
+					"host": [
+						"my-engineering-project",
+						"click"
+					],
+					"path": [
+						"api",
+						"history"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

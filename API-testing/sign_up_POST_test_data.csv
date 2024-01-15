@@ -1,0 +1,6 @@
+email,password,repeated_password,first_name,result,reason
+newemail@web.com,password,password,name,success,
+newemail@web,password,password,name,fail,"Email address is not valid!"
+newemail@web.com,pass,pass,name,fail,"Password should be at least 5 characters long!"
+newemail@web.com,password,passw0rd,name,fail,"Passwords are not identical!"
+newemail@web.com,password,password,name,fail,"Mail already exists in the database!"

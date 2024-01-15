@@ -1,0 +1,3 @@
+email,password,result,images
+newemail@web.com,passw0rd,fail,
+newemail@web.com,password,success,yes

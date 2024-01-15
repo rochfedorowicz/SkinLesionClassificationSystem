@@ -1,0 +1,4 @@
+email,password,result,reason
+email@web.com,password,success,
+email@web.com,passw0rd,fail,"Password is incorrect!"
+email@web.pl,password,fail,"There is no user with that email!"
