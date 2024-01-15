@@ -37,10 +37,9 @@ class Image(db.Model):
     Attributes:
         id (int): A unique identifier for each image, serving as the primary key.
         url (str): The URL where the image is stored, typically pointing to a location in an S3 bucket 
-                or similar storage service. The string length is set to accommodate very long URLs.
+        storage service. The string length is set to accommodate very long URLs.
         jsonified_prediction (str): A string representation of the prediction results associated with 
-                                    the image. This could be a JSON string representing various aspects 
-                                    of the prediction.
+                                    the image.
         user_id (int): A foreign key linking the image to a user in the 'User' table. This establishes 
                     a many-to-one relationship, indicating that each image is associated with one user.
     """
